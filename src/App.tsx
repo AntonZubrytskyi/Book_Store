@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout/MainLayout';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import { RoutePath } from './constants';
+import LoginPage from './pages/LoginPage/LoginPage';
+import { localStorageHelper } from './helpers';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import PublicRoute from './components/Routes/PublicRoute';
+import BooksListPage from './pages/BooksListPage/BooksListPage';
+import BookDetailsPage from './pages/BookDetailsPage/BookDetailsPage';
+import BookEditPage from './pages/BookEditPage/BookEditPage';
 
-function App() {
+const App: FC = () => {
+  const isAuthenticated = localStorageHelper.getFromLocalStorage('accessToken');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        index
+        path="/"
+        element={isAuthenticated
+          ? <Navigate to={RoutePath.BOOKS} /> : <Navigate to={RoutePath.LOGIN} />}
+      />
+      <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path={RoutePath.BOOKS} element={<BooksListPage />} />
+          <Route path={RoutePath.BOOKS_DETAILS} element={<BookDetailsPage />} />
+          <Route path={RoutePath.BOOKS_EDIT} element={<BookEditPage />} />
+        </Route>
+        <Route path="/" element={<PublicRoute />}>
+          <Route index path={RoutePath.LOGIN} element={<LoginPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;

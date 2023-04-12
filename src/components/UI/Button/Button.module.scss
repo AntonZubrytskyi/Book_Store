@@ -1,0 +1,102 @@
+//.btn__auth {
+//  background-color: #005382;
+//  color: #FFFFFF;
+//  border-radius: 5px;
+//}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+  font-weight: 600;
+
+  &__go__back {
+    font-size: 2rem;
+  }
+
+  &__add {
+    background-color: #36A9AE;
+    background-image: linear-gradient(#37ADB2, #329CA0);
+    border: 1px solid #2A8387;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+    color: #FFFFFF;
+    font-size: 17px;
+    padding: 11px 15px 12px;
+    transition: box-shadow .05s ease-in-out, opacity .05s ease-in-out;
+  }
+
+  &__delete {
+    padding: 12px 15px;
+    font-size: 17px;
+    background: crimson;
+    color: #FFFFFF;
+    border-radius: 10px;
+  }
+  &__edit {
+    @extend .btn__delete;
+    background: #2A8387;
+  }
+  &__cancel {
+    @extend .btn__delete;
+    color: black;
+    background: #c6c4c4;
+  }
+
+  &__table__action {
+    font-size: 25px;
+  }
+
+  &__auth {
+    background-color: #005382;
+    color: #FFFFFF;
+    border-radius: 5px;
+    transition: 0.3s;
+    padding: 12px 15px;
+    font-size: 17px;
+    &:disabled{
+      opacity: 0.6;
+    }
+    & span {
+      margin-right: 20px;
+    }
+  }
+
+  &__modal__close {
+    font-size: 22px;
+  }
+
+  &__logout {
+    font-size: 22px;
+    position: relative;
+    top: 22px;
+    margin-left: auto;
+    text-transform: uppercase;
+
+    & span {
+      order: 2;
+      margin-left: 5px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .btn__go-back {
+    top: 27px;
+    left: 28px;
+  }
+}
+
+@media (max-width: 270px) {
+  .btn__logout {
+    margin-left: 0;
+    top: 50px;
+  }
+}

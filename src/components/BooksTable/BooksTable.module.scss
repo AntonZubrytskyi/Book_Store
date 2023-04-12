@@ -1,0 +1,32 @@
+.table{
+  margin: 2rem 10% 0;
+  &__container{
+    margin-top: 1rem;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+  }
+  &__column{
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.4;
+    text-transform: uppercase;
+    background-color: #36304a;
+    padding:24px 10px 20px 15px;
+    font-weight: unset;
+    text-align: left;
+  }
+  &__row{
+    padding: 18px 0 14px 15px ;
+    font-size: 16px;
+    font-weight: 600;
+    color: gray;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  &__btn__box{
+    display: flex;
+    gap: 0.4rem;
+    justify-content: flex-end;
+  }
+}
